@@ -176,63 +176,72 @@ header h1 {
     width: 200px; /* صغرناه قليلاً ليفسح مجالاً للزر */
 }
 
-/* كود إصلاح العرض على الهواتف */
+/* الكود المطور لإصلاح الموبايل 100% */
 @media (max-width: 768px) {
-    /* 1. إصلاح الهيدر: ترتيب العناصر عمودياً */
+    
+    /* 1. إصلاح الهيدر بالكامل */
+    header {
+        padding: 20px 10px !important;
+        height: auto !important; /* لضمان عدم قص العناصر */
+    }
+
     .header-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-        padding: 20px 10px;
+        flex-direction: column !important;
+        gap: 20px !important;
     }
 
-    .logo-area {
-        flex-direction: column;
-        gap: 10px;
-    }
-
+    /* 2. تصغير النصوص الكبيرة لتناسب الشاشة */
     .logo-info h1 {
-        font-size: 2rem; /* تصغير العنوان قليلاً ليناسب الشاشة */
+        font-size: 1.8rem !important; /* تصغير "فن هالة للأكواب" */
+        margin-bottom: 5px !important;
     }
 
-    /* 2. جعل شريط البحث والزر يأخذان عرض الشاشة */
+    .logo-info p {
+        font-size: 1.1rem !important; /* تصغير "لمسة فنية" */
+    }
+
+    /* 3. إصلاح صندوق البحث (الذي يظهر فوق النصوص) */
     .search-container {
-        width: 90%;
-        margin: 0 auto;
+        width: 100% !important;
+        position: relative !important;
+        margin: 15px 0 !important; /* خلق مسافة فوق وتحت البحث */
     }
 
+    .search-container input {
+        padding: 12px 40px 12px 15px !important;
+    }
+
+    /* 4. ترتيب زر المخصص والمود والقائمة */
     .header-actions {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
+        display: flex !important;
+        flex-direction: row-reverse !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
     }
 
-    /* 3. إصلاح شبكة المنتجات: عرض كوب واحد أو اثنين فقط في السطر */
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .cup-image {
-        height: 180px; /* تقليل ارتفاع الصورة قليلاً للموبايل */
-    }
-
-    /* 4. إصلاح الفوتر (Footer) ليكون مرتباً */
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    /* 5. إصلاح اللوجو السفلي (HALA NASSAR) والنصوص */
+    .site-footer {
+        padding: 30px 15px !important;
     }
 
     .footer-section {
-        min-width: 100%;
+        margin-bottom: 25px !important;
     }
-    
-    /* منع تداخل النصوص الكبيرة */
-    .brand-logo {
-        transform: none;
-        font-size: 0.9rem;
+
+    /* إصلاح المربع البنفسجي HALA NASSAR ليصبح أرفع */
+    .footer-section h3, .brand-logo {
+        font-size: 1rem !important;
+        padding: 5px 10px !important;
+        width: fit-content !important;
+        margin: 0 auto 15px auto !important;
+    }
+
+    /* 6. منع تداخل المنتجات */
+    .gallery-grid {
+        grid-template-columns: 1fr !important; /* كوب واحد في السطر الواحد للموبايلات الصغيرة */
+        padding: 15px !important;
     }
 }
 
@@ -936,19 +945,3 @@ display:flex; flex-direction: column; align-items: center; justify-content: cent
     background-color: #8c00ff;
 }
 
-/* تحسينات الموبايل */
-@media (max-width: 600px) {
-    #wishlist-modal .modal-content {
-        width: 85%;
-        margin-top: 100px;
-    }
-}
-
-
-/* للموبايل */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
