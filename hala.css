@@ -182,7 +182,15 @@ header h1 {
     * {
         box-sizing: border-box !important;
     }
-
+    .cup-card {
+        margin-bottom: 30px !important; /* مسافة أكبر بين الأكواب لتجنب التداخل */
+        border-radius: 20px !important; /* جعل الأكواب أكثر استدارة لتناسب الموبايل */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important; /* ظلك أخف قليلاً ليتناسب مع الشاشة الصغيرة */
+    }
+    .Gallery-grid {
+        gap: 25px !important; /* زيادة المسافة بين الأكواب في الموبايل */
+        padding: 20px 15px !important; /* تقليل الحشو الجانبي في الموبايل */
+    }
     body, html {
         overflow-x: hidden !important; /* يمنع التمرير الجانبي تماماً */
         width: 100vw !important;
