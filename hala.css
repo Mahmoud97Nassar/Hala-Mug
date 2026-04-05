@@ -236,11 +236,6 @@ header h1 {
         padding: 10px !important;
         line-height: 1.4 !important;
     }
-    /* 6. منع تداخل المنتجات */
-    .gallery-grid {
-        grid-template-columns: 1fr !important; /* كوب واحد في السطر الواحد للموبايلات الصغيرة */
-        padding: 15px !important;
-    }
 }
 
 /* --- تنسيق شريط البحث بجانب العنوان --- */
