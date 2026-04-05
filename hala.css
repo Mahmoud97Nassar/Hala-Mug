@@ -177,73 +177,71 @@ header h1 {
 }
 
 @media (max-width: 768px) {
-    
-    /* 1. إصلاح الهيدر بالكامل */
+    /* 1. ضبط الجسم لمنع التمرير الأفقي */
+    body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* 2. الهيدر: تقليص الحواف وتوسيط النص */
     header {
-        padding: 20px 10px !important;
-        height: auto !important; /* لضمان عدم قص العناصر */
+        padding: 15px 5% !important;
     }
 
-    .header-content {
-        flex-direction: column !important;
-        gap: 20px !important;
-    }
-
-    /* 2. تصغير النصوص الكبيرة لتناسب الشاشة */
     .logo-info h1 {
-        font-size: 1.8rem !important; /* تصغير "فن هالة للأكواب" */
-        margin-bottom: 5px !important;
+        font-size: 1.6rem !important; /* تصغير العنوان ليناسب عرض الشاشة */
+        white-space: normal !important; /* يسمح للنص بالنزول لسطر جديد إذا لزم */
     }
 
-    .logo-info p {
-        font-size: 1.1rem !important; /* تصغير "لمسة فنية" */
+    /* 3. إصلاح البحث وزر الطلب ليكونوا بصف واحد أو فوق بعض بانتظام */
+    .header-actions {
+        flex-direction: row !important; /* جعلهم بجانب بعض في سطر واحد صغير */
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
     }
 
-    /* 3. إصلاح صندوق البحث (الذي يظهر فوق النصوص) */
     .search-container {
         width: 100% !important;
-        position: relative !important;
-        margin: 15px 0 !important; /* خلق مسافة فوق وتحت البحث */
+        max-width: 280px !important; /* ضمان عدم خروجه عن الحدود */
     }
 
-    .search-container input {
-        padding: 12px 40px 12px 15px !important;
-    }
-
-    /* 4. ترتيب زر المخصص والمود والقائمة */
-    .header-actions {
-        display: flex !important;
-        flex-direction: row-reverse !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 10px !important;
-        width: 100% !important;
-    }
-
-    /* 5. إصلاح اللوجو السفلي (HALA NASSAR) والنصوص */
+    /* 4. الحل الجذري لمشكلة "خارج الحدود" في الأسفل */
     .site-footer {
-        padding: 30px 15px !important;
+        width: 100% !important;
+        padding: 20px 10px !important;
+        box-sizing: border-box !important; /* يضمن أن الـ Padding لا يزيد العرض */
     }
 
-    .footer-section {
-        margin-bottom: 25px !important;
+    .footer-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 10px !important;
+        overflow: hidden !important; /* قص أي شيء يخرج عن الحدود */
     }
 
-    /* إصلاح المربع البنفسجي HALA NASSAR ليصبح أرفع */
-    .footer-section h3, .brand-logo {
-        font-size: 1rem !important;
-        padding: 5px 10px !important;
-        width: fit-content !important;
-        margin: 0 auto 15px auto !important;
+    /* 5. ضبط اللوجو السفلي (HALA NASSAR) */
+    .brand-logo, .footer-section h3 {
+        max-width: 80% !important; /* يمنع المربع من الخروج عن الشاشة */
+        word-wrap: break-word !important;
+        font-size: 0.9rem !important;
+        margin: 0 auto 10px auto !important;
+        display: block !important;
     }
 
+    /* 6. تصغير نص الحقوق في الأسفل */
+    .footer-bottom {
+        font-size: 0.7rem !important;
+        padding: 10px !important;
+        line-height: 1.4 !important;
+    }
     /* 6. منع تداخل المنتجات */
     .gallery-grid {
         grid-template-columns: 1fr !important; /* كوب واحد في السطر الواحد للموبايلات الصغيرة */
         padding: 15px !important;
     }
 }
-
 .cup-card {
     background: #ffffff;
     border-radius: 15px;
