@@ -1,0 +1,903 @@
+:root {
+    --main-bg: #fefefe;
+    --accent-color: #561270;
+    --whatsapp-green: #d325b9;
+    --main-font: 'Tajawal', sans-serif;
+}
+
+body {
+    font-family: var(--main-font);
+    /* أعدت الألوان البنفسجية الأصلية لخلفيتك */
+    background: linear-gradient(rgba(185, 115, 180, 0.9), rgba(255, 255, 255, 0.9)), 
+                url('9.jpeg'); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    color: #074250;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    padding: 10px 5%; /* تقليل التباعد ليكون أرفع */
+    box-shadow: 0 3px 50px rgb(0, 0, 0); /* ظلك الأصلي القوي */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(114, 21, 154, 0.145);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between; /* هذا ما يضع البحث بجانب العنوان */
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+header h1 {
+    font-family: var(--main-font);
+    font-weight: 700;
+    background: linear-gradient(45deg, #0d5c51c8, var(--accent-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.7rem; /* صغرناه قليلاً ليتناسب مع النحافة */
+    margin: 0;
+}
+
+header p {
+    font-family: var(--main-font);
+    font-weight:  400;
+    font-size: 1.8rem; 
+    color: var(--accent-color);
+    margin: 0;
+}
+
+/* ألوان الوضع الليلي */
+.dark-mode {
+    --main-bg: #1a0521;
+    background: #1a0521 !important;
+    color: #eee;
+}
+.dark-mode .cup-card, .dark-mode header, .dark-mode .modal-content {
+    background: #2d0b3a !important;
+    color: #fff;
+    border-color: #4a145c;
+}
+.dark-mode .cup-title { color: #fff; }
+.dark-mode .about-section { background: rgba(255, 255, 255, 0.05); }
+
+.mode-btn {
+    background: none;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
+/* 1. الحاوية الرئيسية للهوية (اللوجو + العناوين) */
+.logo-area {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    /* الفراغ بين المربع الصغير والعنوان العربي */
+    gap: 30px;           
+    /* دفع الهوية كاملة بعيداً عن حافة الشاشة اليمنى */
+    margin-right: 0%;  
+}
+
+/* 2. الشعار الإنجليزي (المربع) */
+.brand-logo {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    padding: 5px 12px; /* كبرنا الحشو الداخلي قليلاً */
+    border-radius: 8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: rotate(-3deg);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+/* 3. كتلة النصوص العربية */
+.logo-info {
+    display: flex;
+    flex-direction: column;
+    /* التأكد من أن النصوص تبدأ من اليمين تماماً */
+    align-items: flex-start; 
+}
+
+/* 4. تعديل العناوين داخل الهوية لضمان التنسيق */
+.logo-info h1 {
+    font-family: var(--main-font);
+    font-weight: 700;
+    background: linear-gradient(45deg, #8c00ffc5, var(--accent-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.8rem; /* حجم مناسب */
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-info p {
+    font-family: var(--main-font);
+    font-weight: 400;
+    font-size: 1.4rem; 
+    color: var(--accent-color);
+    margin: 0;
+    line-height: 1.2;
+}
+
+header h1 {
+    margin: 0; /* إزالة المسافات الزائدة */
+}
+
+/* حاوية تجمع البحث والزر */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* مسافة بين الزر والبحث */
+}
+
+/* تنسيق زر الطلب المخصص في الهيدر */
+.btn-custom-request {
+    background: linear-gradient(45deg, var(--accent-color), #8c00ff);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-family: var(--main-font);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-custom-request:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* تعديل عرض شريط البحث ليناسب الجانبين */
+.search-container {
+    width: 200px; /* صغرناه قليلاً ليفسح مجالاً للزر */
+}
+
+/* للموبايل: ترتيب العناصر تحت بعضها إذا ضاق المكان */
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
+
+/* --- تنسيق شريط البحث بجانب العنوان --- */
+.search-container {
+    position: relative;
+    width: 300px; /* عرض مناسب للجانب */
+    margin: 0;
+}
+
+.search-container input {
+    font-family: var(--main-font);
+    font-weight:  400;
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 0.95rem; 
+
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.container {
+    max-width: 1200px;
+    margin-bottom: 80px !important;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex:1;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 2rem;
+}
+
+.cup-card {
+    background: #ffffff;
+    border-radius: 15px;
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    position: relative;
+    /* التعديل هنا: نجعله مخفياً في البداية */
+    opacity: 0; 
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* أضيفي هذا الكلاس الجديد تحت .cup-card */
+.cup-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تأكدي من وجود هذا لتنسيق التنبيه */
+.toast {
+    position: fixed;
+    bottom: -80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    z-index: 9999;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+.toast.show-toast {
+    bottom: 30px;
+    opacity: 1;
+}
+
+.cup-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8); /* ظلك القوي عند المرور */
+    transform: translateY(-12px) scale(1.02);
+}
+
+.cup-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.cup-title {
+    font-size: 1.3rem; /* تصغير الخط قليلاً */
+    margin: 0; 
+    line-height: 1.2;
+    color: #0d5c51c8; /* لون بنفسجي داكن جداً يقترب من الأسود (فخامة أكثر) */
+    font-weight: 700; /* جعل الخط عريضاً ليبرز العنوان */
+    margin-bottom: 3px;
+    font-family: var(--main-font);
+}
+.cup-info { padding: 0.2rem; text-align: center;
+display:flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+
+.cup-price {
+    display: block;
+    font-size: 1.3rem;
+    color: #094f46;
+    font-weight: bold;
+    margin: 2px 0;
+}
+
+.btn-order {
+    display: block;
+    width: 90%; /* يجعل الزر يملأ أغلب عرض الكرت ليظهر بشكل متناسق */
+    margin: 2px auto; /* يوسط الزر ويترك مسافة بسيطة من الأعلى والأسفل */
+    background-color:#0d5c51c8;
+    color: white;
+    padding: 8px 0; /* زيادة الارتفاع قليلاً ليكون مريحاً للضغط */
+    border-radius: 10px; /* جعل الحواف دائرية بالكامل ليتناسب مع شكل الأكواب */
+    border: none;
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite; /* تأثير النبض المستمر */
+}
+
+/* حركة النبض المعدلة لتناسب العرض الجديد */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(86, 18, 112, 0.4);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(86, 18, 112, 0);
+        transform: scale(1.02); /* تكبير بسيط جداً أثناء النبض */
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(86, 18, 112, 0);
+        transform: scale(1);
+    }
+}
+
+.btn-order:hover {
+    background-color: #8c00ff; /* يتغير لدرجة أفتح قليلاً عند الوقوف عليه */
+    transform: translateY(-3px); /* يرتفع للأعلى قليلاً عند التحويم */
+    animation: none; /* يتوقف النبض عند وضع الماوس لسهولة الضغط */
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(86, 18, 112, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(86, 18, 112, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(86, 18, 112, 0); }
+}
+
+.btn-order:hover {
+    background-color: white;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+.btn-order:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+/* إضافة سهم صغير يظهر عند التمرير */
+.btn-order::after {
+    content: '←';
+    transition: 0.3s;
+}
+.btn-order:hover::after {
+    transform: translateX(-5px);
+}
+
+.btn-order:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(140, 0, 255, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-confirm-order {
+    width: 100%;
+    background: linear-gradient(45deg, #25d366, #128c7e); /* لون واتساب متدرج */
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-family: var(--main-font);
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-confirm-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-confirm-order:active {
+    transform: translateY(0);
+}
+
+/* إضافة لمسة بسيطة إذا أردتِ وضع أيقونة واتساب صغيرة داخل الزر برمجياً */
+.btn-confirm-order::before {
+    content: '📱'; 
+    font-size: 1.2rem;
+}
+
+/* المفضلة والمودال */
+.wishlist-heart {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.9rem;
+    cursor: pointer;
+    color: #ff4757;
+    z-index: 10;
+}
+
+.wishlist-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* 1. جعل النافذة تسمح بالتمرير داخلها إذا كان المحتوى طويلاً */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* تعتيم الخلفية قليلاً */
+    overflow-y: auto; /* هذا هو السطر السحري الذي سيسمح لكِ بالنزول للأسفل */
+    padding: 20px 0; /* مسافة بسيطة من الأعلى والأسفل */
+}
+
+/* 2. تحسين شكل محتوى النافذة وموضعه */
+.modal-content {
+    background-color: #fff;
+    margin: 30px auto; /* مسافة من الأعلى */
+    padding: 10px;
+    width: 90% !important; /* يجعل العرض 90% من الشاشة */
+    max-width: 400px;
+    border-radius: 15px;
+    position: relative;
+    text-align: right; /* محاذاة النص لليمين لتناسب اللغة العربية */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+.input-group {
+    margin-bottom: 20px;
+    text-align: right; /* التأكد من أن النصوص تبدأ من اليمين */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.input-group input, 
+.input-group textarea, 
+.input-group select {
+    width: 100%;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 12px;
+    border: 1.5px solid #eee;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    resize: vertical;
+    min-height: 20px;
+    font-family: var(--main-font);
+    cursor: pointer;
+    appearance: none; /* لإخفاء سهم المتصفح الافتراضي */
+    -webkit-appearance: none;
+    background-color: #fcfcfc;
+
+    /* الكود الذي أرسلتِه لإضافة سهم مخصص */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="%23666" d="M5 7l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: left 15px center; /* وضع السهم جهة اليسار لأن المتجر عربي */
+    background-size: 15px;
+}
+
+/* تحسين شكل القائمة عند الضغط عليها */
+.input-group select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    background-color: #fff;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    background-color: #fff;
+}
+
+
+
+.order-form h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+
+/* --- التنسيق النهائي والمطور لنافذة المفضلة --- */
+
+#wishlist-modal .modal-content {
+    width: 90%;           
+    max-width: 350px;     
+    padding: 15px;        
+    margin: 50px auto;    
+    border-radius: 20px;  
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* تنسيق رأس النافذة (العنوان + الزر في سطر واحد) */
+.modal-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* يوسط العنوان */
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* زر الإغلاق X بجانب العنوان جهة اليسار */
+#wishlist-modal .close-button {
+    position: absolute !important;
+    left: 0; 
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem !important;
+    color: #ff4757 !important;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+}
+
+/* عنوان أكوابي المفضلة في المنتصف */
+#wishlist-modal h2 {
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+#wishlist-modal hr {
+    width: 50%;
+    border: 0.5px solid #eee;
+    margin: 10px auto !important;
+}
+
+/* تنسيق عناصر القائمة (الاسم بجانب السعر) */
+.wishlist-item {
+    display: flex !important;
+    flex-direction: row-reverse !important; /* صورة يمين - نص وسط - حذف يسار */
+    align-items: center !important;
+    padding: 10px !important;
+    background: #fdf7ff !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px !important;
+    gap: 10px !important;
+}
+
+.wishlist-item img {
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 8px !important;
+    object-fit: cover !important;
+    flex-shrink: 0;
+}
+
+/* حاوية الاسم والسعر ليكونوا بجانب بعض */
+.wishlist-item-info, 
+#wishlist-items > div > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: row !important; /* بجانب بعض */
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 25px !important;
+    text-align: right !important;
+    overflow: hidden;
+}
+
+.wishlist-item h4 {
+    margin: 0 !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+}
+
+.wishlist-item span {
+    font-size: 0.8rem !important;
+    color: var(--accent-color) !important;
+    font-weight: bold !important;
+    white-space: nowrap !important;
+}
+
+.contact-item {
+    display: flex !important;
+    flex-direction: row !important; /* لترتيب العناصر أفقياً */
+    justify-content: center !important; /* لتوسط المحتوى بالكامل في الفوتر */
+    align-items: center !important;
+    gap: 10px; /* المسافة بين الأيقونة والنص */
+    margin-bottom: 12px;
+}
+
+.contact-item i {
+    order: 2; /* إجبار الأيقونة أن تكون العنصر الثاني (على اليمين في الاتجاه العربي) */
+    color: var(--accent-color);
+    width: 20px;
+    text-align: center;
+}
+
+.contact-item span {
+    order: 1; /* النص يكون على اليسار */
+    direction: ltr; /* لضمان ظهور الأرقام الدولية بشكل صحيح */
+}
+
+/* تلوين أيقونة الواتساب باللون الأخضر */
+.contact-item .fa-whatsapp {
+    color: #25D366 !important;
+}
+
+/* تلوين أيقونة الهاتف والبريد بالبنفسجي لضمان ثباتهم */
+.contact-item .fa-phone-alt, 
+.contact-item .fa-envelope {
+    color: #821e9694 !important;
+}
+
+
+
+/* تذييل النافذة */
+.favorites-footer {
+    text-align: center !important;
+    font-size: 0.75rem !important;
+    color: #888 !important;
+    margin-top: 10px !important;
+}
+
+.btn-send-wishlist {
+    width: 100%;
+    background: linear-gradient(45deg, #25d366, #128c7e);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: var(--main-font);
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-send-wishlist:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-send-wishlist {
+    width: 100%;
+    background: linear-gradient(45deg, #25d366, #128c7e);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: var(--main-font);
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-send-wishlist:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    50% { transform: translate(-1px, 2px) rotate(1deg); }
+    100% { transform: translate(1px, 1px) rotate(0deg); }
+}
+
+.wishlist-counter.bump {
+    animation: shake 0.5s;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* تنسيق الفوتر الجديد */
+.site-footer {
+    background-color: #ffffffa5;
+    margin-top: 100px;
+    padding: 40px 0 20px 0;
+    border-top: 1px solid #eee;
+    direction: rtl;
+    font-family: var(--main-font);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 400px;
+    text-align: center;
+}
+
+.footer-section h3 {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 40px;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.footer-section a {
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.footer-section p {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ليبقى المحتوى في المنتصف كما في صورتك */
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.footer-section i {
+    min-width: 20px; /* لضمان تساوي المسافات */
+    text-align: center;
+}
+
+.footer-section a:hover {
+    color: var(--accent-color);
+}
+
+.social-icons i {
+    font-size: 1.5rem;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.brand-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+/* إخفاء زر الواتساب العائم القديم */
+.floating-whatsapp {
+    display: none !important;
+}
+
+/* البحث عن كود .cup-card القديم واستبداله بهذا */
+.cup-card {
+    background: #ffffff;
+    border-radius: 15px;
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    position: relative;
+    
+    /* الإعدادات الافتراضية للحركة */
+    opacity: 0; 
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* الكلاس الذي يضيفه الجافاسكريبت عند التمرير */
+.cup-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast {
+    position: fixed;
+    bottom: -80px; /* يبدأ من خارج الشاشة من الأسفل */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    pointer-events: none; /* لكي لا يمنع الضغط على ما تحته */
+}
+
+/* الكلاس الذي سيضيفه الجافاسكريبت لإظهار التنبيه */
+.toast.show-toast {
+    bottom: 30px; /* يرتفع للأعلى ليظهر */
+    opacity: 1;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* سيتحكم الجافاسكريبت في ظهوره */
+    z-index: 1000;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+#backToTop:hover {
+    transform: scale(1.1);
+    background-color: #8c00ff;
+}
+
+/* تحسينات الموبايل */
+@media (max-width: 600px) {
+    #wishlist-modal .modal-content {
+        width: 85%;
+        margin-top: 100px;
+    }
+}
+
+
+/* للموبايل */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

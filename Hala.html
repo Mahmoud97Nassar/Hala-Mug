@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر هالة للأكواب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="hala.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo-area">
+            <div class="brand-logo">Hala Mug</div>
+            <div class="logo-text-wrapper">
+                <h1>فن هالة للأكواب</h1>
+                <p>لمسة فنية في كل رشفة</p>
+            </div>
+        </div>
+        
+        <div class="header-actions">
+            <button class="btn-custom-request" onclick="openOrderModal('طلب تصميم مخصص عحسب الذوق')">
+                ✨ طلب مخصص
+            </button>
+            <button id="darkModeToggle" class="mode-btn">🌙</button>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="ابحث عن كوبك المفضل..." onkeyup="searchCups()">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div> </div>
+</header>
+
+<div class="wishlist-counter" onclick="toggleWishlist()">
+    ❤️ <span id="wishlist-count">0</span>
+</div>
+
+<div id="wishlist-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close-button" onclick="toggleWishlist()">&times;</span>
+            <h2>أكوابي المفضلة ❤️</h2>
+        </div>
+        <hr>
+        <div id="wishlist-items"></div> <button onclick="sendWishlistToWhatsapp()" class="btn-send-wishlist">
+            إرسال القائمة كاملة للطلب عبر واتساب 
+            <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
+</div>
+
+<div id="orderModal" class="modal">
+    <div class="modal-content order-form">
+        <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+        <h2>تفاصيل طلبك الفني ✨</h2>
+        <p id="selectedProductName" style="color: var(--accent-color); font-weight: bold; font-size: 1.2rem;"></p>
+        
+        <div class="input-group">
+            <label>الأسم الكامل:</label>
+            <input type="text" id="customerName" placeholder="أدخل اسمك ثلاثي">
+        </div>
+
+        <div class="input-group">
+            <label>رقم الجوال:</label>
+            <input type="tel" id="customerPhone" placeholder="059-xxxxxxx">
+        </div>
+
+        <div class="input-group">
+            <label>العنوان بالتفصيل:</label>
+            <input type="text" id="customerAddress" placeholder="المدينة - الحي - الشارع">
+        </div>
+
+        <div class="input-group" id="detailsGroup">
+            <label id="detailsLabel">وصف الطلب:</label>
+            <textarea id="customDetails" rows="3" placeholder="مثلاً: أريد اسم ليلى باللون الذهبي..."></textarea>
+        </div>
+        
+        <div class="input-group">
+            <label>طريقة الدفع:</label>
+            <select id="paymentMethod">
+                <option value="عبر التطبيق">عبر التطبيق</option>
+            </select>
+        </div>
+        
+        <button class="btn-confirm-order" onclick="sendToWhatsApp()">تأكيد الطلب عبر واتساب</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="gallery-grid">
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(1, 'كوب امي', '35', '1.jpeg', this)">♡</div><img src="1.jpeg" alt="كوب 1" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب امي</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب امي')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(2, 'كوب الدكتورة', '35', '2.jpeg', this)">♡</div><img src="2.jpeg" alt="كوب 2" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب الدكتورة</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب الدكتورة')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(3, 'كوب انا وماما', '40', '3.jpeg', this)">♡</div><img src="3.jpeg" alt="كوب 3" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب انا وماما</h3><span class="cup-price">40 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب انا وماما')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(4, 'كوب  الصوصة الدلوعة 2', '35', '4.jpeg', this)">♡</div><img src="4.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب  الصوصة الدلوعة</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب  الصوصة الدلوعة 4')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(5, 'كوب بالأسم 2', '35', '5.jpeg', this)">♡</div><img src="5.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب بالأسم</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب بالأسم 5')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(6, 'كوب الفراشة 2', '40', '6.jpeg', this)">♡</div><img src="6.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب الفراشة</h3><span class="cup-price">40 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب الفراشة 6')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(7, 'كوب الوردة الزرقاء 3', '35', '7.jpeg', this)">♡</div><img src="7.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب الوردة الزرقاء</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('ليلة مرصعة بالنجوم - 7')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(8, 'كوب الصبارة 3', '35', '8.jpeg', this)">♡</div><img src="8.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب الصبارة</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب الصبارة - 8')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(9, 'كوب ريال مدريد 3', '40', '9.jpeg', this)">♡</div><img src="9.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب ريال مدريد</h3><span class="cup-price">40 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب ريال مدريد - 9')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(10, 'كوب بنوتة كيوت 4', '35', '10.jpeg', this)">♡</div><img src="10.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب بنوتة كيوت</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب بنوتة كيوت - 10')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(11, 'الزهور الوردية 4', '35', '11.jpeg', this)">♡</div><img src="11.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب البنوتة</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب البنوتة - 11')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(12, 'كوب الحامل 4', '40', '12.jpeg', this)">♡</div><img src="12.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب الحامل</h3><span class="cup-price">40 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب الحامل - 12')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(13, 'كوب القطة 5', '35', '13.jpeg', this)">♡</div><img src="13.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب القطة</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب القطة - 13')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(14, 'كوب بالأسم 5', '35', '14.jpeg', this)">♡</div><img src="14.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب بالأسم</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب بالأسم - 14')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(15, 'كوب بالأسم 5', '40', '15.jpeg', this)">♡</div><img src="15.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب بالأسم</h3><span class="cup-price">40 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب بالأسم -  15')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(16, 'كوب البطريق 6', '35', '16.jpeg', this)">♡</div><img src="16.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب البطريق</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب البطريق - 16')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(17, 'كوب عيد سعيد 6', '35', '17.jpeg', this)">♡</div><img src="17.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب عيد سعيد</h3><span class="cup-price">35 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب عيد سعيد - 17')">اطلب الآن</button></div></div>
+        <div class="cup-card"><div class="wishlist-heart" onclick="addToWishlist(18, 'كوب الأم الحنونة 6', '40', '18.jpeg', this)">♡</div><img src="18.jpeg" class="cup-image"><div class="cup-info"><h3 class="cup-title">كوب الأم الحنونة</h3><span class="cup-price">40 شيكل</span><button class="btn-order" onclick="openOrderModal('كوب الأم الحنونة - 18')">اطلب الآن</button></div></div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>تواصل معنا</h3>
+            <div class="contact-item">
+                <span>+972 597 825 817</span>
+                <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-item">
+                <span>+32 465 887 441</span>
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="contact-item">
+                <span>Nassar@dr.com</span>
+                <i class="fas fa-envelope"></i>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>تابعنا على</h3>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/hala_nassar_art" target="_blank">
+                    <i class="fab fa-instagram"></i> انستغرام
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-section brand-section">
+            <div class="brand-logo footer-logo">HALA NASSAR</div>
+            <p>تشكيلة أكوابنا الخاصة لتكون مميزاً في كل تفاصيلك. صنع بكل حب.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>جميع الحقوق محفوظة ©️ 2026 | رسم بكل حب </p>
+    </div>
+</footer>
+    <div id="toast" class="toast">تمت الإضافة للمفضلة بنجاح ❤️</div>
+<script src="script.js"></script>
+<button id="backToTop" onclick="scrollToTop()" title="العودة للأعلى">↑</button>
+</body>
+</html>
