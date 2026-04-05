@@ -138,3 +138,40 @@ window.onclick = function(event) {
         event.target.style.display = "none";
     }
 };
+
+// دالة تأكيد الطلب وإرسال البيانات للواتساب
+// دالة إرسال الطلب للواتساب - تأكدي أن الاسم مطابق للـ HTML
+function sendToWhatsApp() {
+    // 1. جلب البيانات باستخدام الـ IDs الموجودة في الـ HTML الخاص بكِ
+    const name = document.getElementById('customerName').value;
+    const phone = document.getElementById('customerPhone').value;
+    const address = document.getElementById('customerAddress').value;
+    const details = document.getElementById('customDetails').value;
+    const payment = document.getElementById('paymentMethod').value;
+    
+    // جلب اسم المنتج الذي تم اختياره (مخزن في المتغير العام currentProduct)
+    const product = currentProduct; 
+
+    // 2. التحقق من الحقول المطلوبة
+    if (!name || !phone || !address) {
+        alert("الرجاء إدخال الاسم، رقم الجوال، والعنوان لإتمام الطلب.");
+        return;
+    }
+
+    // 3. تجهيز نص الرسالة
+    const whatsappNumber = "972597825817"; // رقمك بصيغة دولية بدون أصفار أو +
+    const message = `*طلب جديد من متجر هالة* 🎨%0A%0A` +
+                    `*المنتج:* ${product}%0A` +
+                    `*الاسم:* ${name}%0A` +
+                    `*الجوال:* ${phone}%0A` +
+                    `*العنوان:* ${address}%0A` +
+                    `*طريقة الدفع:* ${payment}%0A` +
+                    (details ? `*تفاصيل إضافية:* ${details}` : "");
+
+    // 4. فتح رابط الواتساب
+    const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+    window.open(url, '_blank');
+
+    // 5. إغلاق المودال
+    closeOrderModal();
+}
