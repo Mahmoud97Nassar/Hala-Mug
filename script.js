@@ -139,6 +139,31 @@ window.onclick = function(event) {
     }
 };
 
+function finalWishlistOrder() {
+    // التأكد من وجود بيانات في القائمة
+    if (!wishlist || wishlist.length === 0) {
+        alert("قائمة المفضلة فارغة حالياً.. أضيفي بعض الأكواب أولاً ❤️");
+        return;
+    }
+
+    // تجهيز النص
+    let messageText = "*طلب قائمة الأكواب المفضلة* ❤️%0A%0A";
+    
+    wishlist.forEach((item, index) => {
+        messageText += `${index + 1}- ${item.title} (${item.price} شيكل)%0A`;
+    });
+
+    messageText += "%0Aأرجو التواصل لتأكيد الطلب ✨";
+
+    // رقم الواتساب الخاص بكِ
+    const myNumber = "972597825817";
+
+    // فتح الرابط
+    const finalUrl = `https://wa.me/${myNumber}?text=${messageText}`;
+    window.open(finalUrl, '_blank');
+}
+
+
 // دالة تأكيد الطلب وإرسال البيانات للواتساب
 // دالة إرسال الطلب للواتساب - تأكدي أن الاسم مطابق للـ HTML
 function sendToWhatsApp() {
